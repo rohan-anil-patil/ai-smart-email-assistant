@@ -69,11 +69,13 @@ public class EmailGeneratorService {
 
     private String buildPrompt(EmailRequest emailRequest) {
         StringBuilder prompt = new StringBuilder();
-        prompt.append("Generate a professional email reply for the following email:");
+        prompt.append("Generate a professional email reply for the following email. ");
+        prompt.append("Return only the email body without any formatting symbols. ");
+        prompt.append("Keep it clean and plain text only. ");
         if (emailRequest.getTone() != null && !emailRequest.getTone().isEmpty()) {
-            prompt.append("Use a ").append(emailRequest.getTone()).append(" tone.");
+            prompt.append("Use a ").append(emailRequest.getTone()).append(" tone. ");
         }
-        prompt.append("Original Email: \n").append(emailRequest.getEmailContent());
+        prompt.append("\nOriginal Email:\n").append(emailRequest.getEmailContent());
         return prompt.toString();
     }
 }
